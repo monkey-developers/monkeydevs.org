@@ -1,9 +1,31 @@
-<nav class="h-20 bg-slate-900 flex items-center w-full px-96 gap-48">
-  <img src="./logo_navbar.svg" class="w-56" alt="" />
+---
+const { page } = Astro.props;
+
+const items = [
+  {
+    item: "Sobre",
+    link: "#",
+  },
+  { item: "Blog", link: "#" },
+  { item: "Projetos", link: "#" },
+  { item: "Devs", link: "#" },
+];
+---
+
+<nav class="h-28 bg-slate-900 flex items-center w-full px-96 gap-48">
+  <a href="/"><img src="./logo_navbar.svg" class="w-56" alt="" /></a>
   <div class="text-xl flex gap-24">
-    <a href="">Sobre</a>
-    <a href="">Blog</a>
-    <a href="">Projetos</a>
-    <a href="">Devs</a>
+    {
+      items.map((i) => (
+        <div class="group flex flex-col items-center relative">
+          <a href={i.link}>{i.item}</a>
+          <div
+            class={`bg-teal-800 w-2 h-2 rounded-full absolute top-9 group-hover:flex ${
+              page === i.item ? "bg-teal-500" : "hidden"
+            }`}
+          />
+        </div>
+      ))
+    }
   </div>
 </nav>
