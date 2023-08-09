@@ -1,4 +1,6 @@
 ---
+import AboutUs from "../components/AboutUs.astro";
+import Hero from "../components/Hero.astro";
 import Navbar from "../components/Navbar.astro";
 import Layout from "../layouts/Layout.astro";
 ---
@@ -6,26 +8,8 @@ import Layout from "../layouts/Layout.astro";
 <Layout title="Welcome to Astro.">
   <main>
     <Navbar />
-    <div class="h-screen w-full flex items-center justify-center">
-      <div class="w-4/5 h-3/4 relative flex flex-col items-center">
-        <div class="z-50 w-full h-full flex flex-col pt-24 gap-10">
-          <img src="./logo_hero.svg" class="h-80" alt="" />
-          <p class="text-center text-2xl text-gray-300">
-            Bem vindo ao <strong>MonkeyDevs!</strong>
-            <br />
-            Somos uma organização de desenvolvimento de softwares open-source.
-          </p>
-          <div class="w-full flex gap-12 items-center justify-center mt-16">
-            <a href=""><img class="w-10" src="./github.svg" alt="" /></a>
-            <a href=""> <img class="w-10" src="./youtube.svg" alt="" /></a>
-          </div>
-        </div>
-        <div
-          class="blur-3xl bg-gradient-to-tr from-[#175C58] from-40% to-[#512984] rounded-full opacity-30 w-full h-full absolute top-0 -z-10"
-        >
-        </div>
-        <img src="./chrevon.svg" class="animate-bounce" alt="" />
-      </div>
-    </div>
+    <Hero />
+    <AboutUs />
+    
   </main>
 </Layout>
