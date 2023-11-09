@@ -1,18 +1,23 @@
 {
-  "name": "",
+  "name": "monkeydevs.org",
   "type": "module",
   "version": "0.0.1",
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
-    "build": "astro build",
+    "build": "astro check && astro build",
     "preview": "astro preview",
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/react": "^3.0.4",
+    "@astrojs/check": "^0.3.1",
     "@astrojs/tailwind": "^5.0.2",
-    "astro": "^3.4.0",
-    "tailwindcss": "^3.0.24"
+    "@fontsource/nunito": "^5.0.15",
+    "astro": "^3.5.0",
+    "tailwindcss": "^3.0.24",
+    "typescript": "^5.2.2"
+  },
+  "engines": {
+    "node": ">= 18.0.0 < 19.0.0"
   }
 }

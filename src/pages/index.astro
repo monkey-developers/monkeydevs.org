@@ -1,22 +1,19 @@
 ---
-import AboutUs from "../components/AboutUs.astro";
-import Enterprises from "../components/Enterprises.astro";
-import Hero from "../components/Hero.astro";
-import Navbar from "../components/Navbar.astro";
-import Projects from "../components/Projects.astro";
-import Footer from "../components/Footer.astro"
 import Layout from "../layouts/Layout.astro";
-import Contact from "../components/Contact.astro"
 ---
 
 <Layout title="Welcome to Astro.">
-  <main>
-    <Navbar />
-    <Hero />
-    <AboutUs />
-    <Enterprises />
-    <Projects />
-    <Contact />
-    <Footer/>
+  <main class="justify-center items-center flex flex-col h-screen">
+    <h1 class="font-black text-2xl">MonkeyDevs</h1>
+    <p>the best!!!!!</p>
+
+    <h3>Members!! (Monkeys)</h3>
+    <ul>
+      <li>Vitor Miura</li>
+      <li>Abe Guilherme</li>
+      <li>Viktor Marinho</li>
+      <li>Vinicius Ventura</li>
+      <li>Igor Oliveira</li>
+    </ul>
   </main>
 </Layout>
