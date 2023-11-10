@@ -11,3 +11,4 @@
 
 - Articles/Blog page similar to epicweb.dev
 - Achievements page
+- Blurred image as placeholder image before fully loaded
