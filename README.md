@@ -9,3 +9,4 @@
 ## Ideas
 
 - Articles/Blog page similar to epicweb.dev
+- Achievements page
