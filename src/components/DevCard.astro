@@ -1,0 +1,11 @@
+---
+interface Props {
+  name: string;
+}
+
+const { name } = Astro.props;
+---
+
+<div class="h-full w-full rounded-lg bg-purple-700">
+  <span>{name}</span>
+</div>
