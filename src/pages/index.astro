@@ -1,10 +1,19 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import AnimatedTextGradient from "../components/AnimatedTextGradient.astro";
 ---
 
 <Layout title="Welcome to Astro.">
   <main class="justify-center items-center flex flex-col h-screen">
-    <h1 class="font-black text-2xl">MonkeyDevs</h1>
+    <h1 class="font-black text-5xl">
+      <AnimatedTextGradient
+        from="from-teal-400"
+        via="via-blue-600"
+        to="to-violet-600"
+        text="MonkeyDevs"
+      />
+    </h1>
+
     <p>the best!!!!!</p>
 
     <h3>Members!! (Monkeys)</h3>
