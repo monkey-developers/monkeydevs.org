@@ -1,20 +1,11 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import { developers } from "../utils/devsInfo";
-import DevCard from "../components/DevCard.astro";
+import CommitGraphDevs from "../components/CommitGraphDevs";
 ---
 
 <Layout title="Monkey Developers">
   <section class="fullScreen flex flex-col items-center">
-    <span class="text-2xl font-bold mt-12">Monkey Developers</span>
-    <div class="h-full w-full grid grid-cols-5 gap-20 p-20">
-      {
-        developers.map((dev) => (
-          <div class="h-80 w-72">
-            <DevCard name={dev.name} image={dev.image} />
-          </div>
-        ))
-      }
-    </div>
+    <span class="text-2xl font-bold mt-12">Choose your monkey</span>
+    <CommitGraphDevs client:load />
   </section>
 </Layout>

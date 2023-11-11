@@ -18,12 +18,17 @@ export default {
           "50%": { backgroundPosition: "100% 50%" },
           "100%": { backgroundPosition: "0% 50%" },
         },
+        fadeIn: {
+          "0%": { opacity: "0"},
+          "100%": { opacity: "100%"}
+        }
       },
       backgroundSize: {
         "300%": "300%",
       },
       animation: {
         gradient: "animatedgradient 6s ease infinite alternate",
+        fadeIn: "fadeIn 0.5s ease-in"
       },
     },
   },
