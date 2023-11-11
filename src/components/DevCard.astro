@@ -1,11 +1,27 @@
 ---
 interface Props {
   name: string;
+  image: string;
+  github?: string;
+  linkedin?: string;
+  website?: string;
 }
 
-const { name } = Astro.props;
+const { name, image, github, linkedin, website } = Astro.props;
 ---
 
-<div class="h-full w-full rounded-lg bg-purple-700">
-  <span>{name}</span>
+<div
+  style=`background-image: url(${image})`
+  class="h-full w-full rounded-lg shadow-lg group bg-center"
+>
+  <div
+    class="h-full w-full group-hover:bg-[rgba(0,0,0,.8)] rounded-lg flex items-center justify-center relative"
+  >
+    <span class="opacity-0 group-hover:opacity-100 font-bold">{name}</span>
+    <div class="opacity-0 group-hover:opacity-100 flex gap-2 absolute bottom-5">
+      <a href={github} target="_blank">gh</a>
+      <a href={linkedin} target="_blank">in</a>
+      <a href={website} target="_blank">wb</a>
+    </div>
+  </div>
 </div>

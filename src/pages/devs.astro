@@ -5,14 +5,13 @@ import DevCard from "../components/DevCard.astro";
 ---
 
 <Layout title="Monkey Developers">
-  <section class="h-screen w-screen">
-    <div
-      class="h-full w-full"
-    >
+  <section class="fullScreen flex flex-col items-center">
+    <span class="text-2xl font-bold mt-12">Monkey Developers</span>
+    <div class="h-full w-full grid grid-cols-5 gap-20 p-20">
       {
         developers.map((dev) => (
-          <div class="h-96 w-80">
-            <DevCard name={dev.name} />
+          <div class="h-80 w-72">
+            <DevCard name={dev.name} image={dev.image} />
           </div>
         ))
       }
