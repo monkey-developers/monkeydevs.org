@@ -1,0 +1,11 @@
+---
+const { solid = true, textSize } = Astro.props;
+---
+
+<button
+  class={`${
+    solid ? "bg-white  text-black duration-100" : "text-white duration-200"
+  } hover:opacity-75 color-1 w-full px-6 py-2 flex items-center justify-center text-${textSize} rounded font-semibold border transition-all `}
+>
+  <slot />
+</button>

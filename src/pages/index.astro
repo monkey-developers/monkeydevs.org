@@ -1,22 +1,25 @@
 ---
-import AboutUs from "../components/AboutUs.astro";
-import Enterprises from "../components/Enterprises.astro";
-import Hero from "../components/Hero.astro";
-import Navbar from "../components/Navbar.astro";
-import Projects from "../components/Projects.astro";
-import Footer from "../components/Footer.astro"
+import Card from "../components/Card.astro";
 import Layout from "../layouts/Layout.astro";
-import Contact from "../components/Contact.astro"
+import AnimatedTextGradient from "../components/AnimatedTextGradient.astro";
 ---
 
-<Layout title="Welcome to Astro.">
-  <main>
-    <Navbar />
-    <Hero />
-    <AboutUs />
-    <Enterprises />
-    <Projects />
-    <Contact />
-    <Footer/>
+<Layout title="MonkeyDevs">
+  <main class="justify-center items-center flex flex-col fullScreen gap-3">
+    <h1 class="font-black text-6xl">
+      <AnimatedTextGradient
+        from="from-teal-400"
+        via="via-blue-600"
+        to="to-violet-600"
+        text="monkeydevs"
+      />
+    </h1>
+
+    <p class="font-bold text-lg">Site em construção</p>
+
+    <div class="h-96 w-72 ">
+      <Card title="teste blob" paragraph="AUSHAUSHAshpiofnwsejfgnwslkfgnwsjf" image="/aot.jpg" link_href="/projetos"/>
+    </div>
   </main>
+  
 </Layout>
