@@ -68,6 +68,8 @@ function DevCard({ image, name }: PropsCardDev) {
       class="h-16 w-16 flex items-center justify-center bg-cover rounded-lg hover:scale-150 transition group"
       style={{ backgroundImage: `url(${image})` }}
       alt={name}
-    ></a>
+    >
+      <dev class="bg-black opacity-0 group-hover:opacity-40 h-full w-full rounded-lg"></dev>
+    </a>
   );
 }
