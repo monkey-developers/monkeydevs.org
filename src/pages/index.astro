@@ -1,21 +1,22 @@
 ---
 import Card from "../components/Card.astro";
 import Layout from "../layouts/Layout.astro";
+import AnimatedTextGradient from "../components/AnimatedTextGradient.astro";
 ---
 
-<Layout title="Welcome to Astro.">
-  <main class="justify-center items-center flex flex-col h-screen">
-    <h1 class="font-black text-2xl">MonkeyDevs</h1>
-    <p>the best!!!!!</p>
+<Layout title="MonkeyDevs">
+  <main class="justify-center items-center flex flex-col h-screen w-screen gap-3">
+    <h1 class="font-black text-7xl">
+      <AnimatedTextGradient
+        from="from-teal-400"
+        via="via-blue-600"
+        to="to-violet-600"
+        text="monkeydevs"
+      />
+    </h1>
 
-    <h3>Members!! (Monkeys)</h3>
-    <ul>
-      <li>Vitor Miura</li>
-      <li>Abe Guilherme</li>
-      <li>Viktor Marinho</li>
-      <li>Vinicius Ventura</li>
-      <li>Igor Oliveira</li>
-    </ul>
+    <p class="font-bold text-lg">Site em construção</p>
+
     <div class="h-96 w-72 ">
       <Card title="teste blob" paragraph="AUSHAUSHAshpiofnwsejfgnwslkfgnwsjf" image="/aot.jpg" link_href="/projetos"/>
     </div>

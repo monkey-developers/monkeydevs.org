@@ -1,0 +1,9 @@
+---
+const { from, via, to, text } = Astro.props;
+---
+
+<span
+  class={`bg-gradient-to-r ${from} ${via} ${to} text-transparent bg-clip-text bg-100% animate-gradient`}
+>
+  {text}
+</span>
