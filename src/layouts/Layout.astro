@@ -25,7 +25,9 @@ const { title } = Astro.props;
     <ViewTransitions />
     <div class="flex bg-[#1C1C1C] text-white h-screen overflow-y-hidden">
       <Sidebar />
-      <div class="overflow-y-auto overflow-x-hidden w-screen">
+      <div
+        class="overflow-y-auto overflow-x-hidden w-screen flex flex-col justify-between"
+      >
         <slot />
         <Footer />
       </div>
