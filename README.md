@@ -6,6 +6,7 @@
 - Styling with tailwindcss
 - Nunito as default font
 - Default icon package is [Tabler](https://tabler-icons.io/), falback (if not found the desired icon in Tabler) is [Lucide](https://lucide.dev/)
+- English as default language, we'll add i18 support and translation to portuguese later
 
 ## Ideas
 
