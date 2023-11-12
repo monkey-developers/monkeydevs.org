@@ -1,5 +1,6 @@
 ---
 import Footer from "../components/Footer.astro";
+import FormattedDate from "../components/FormattedDate.astro";
 import Layout from "../layouts/Layout.astro";
 import { getDevs } from "../utils";
 import Parser from "rss-parser";
@@ -58,21 +59,18 @@ console.log("posts:", posts);
       <h1 class="self-start mt-12 font-semibold text-xl">
         <span class="font-bold">Content</span> - Articles produced by MonkeyDevs
       </h1>
-      <div class="mt-4 flex flex-col gap-2 max-w-xl">
+      <div class="mt-4 flex flex-col gap-3 max-w-xl">
         {
           posts.map((post) => (
-            <div class="w-full bg-[#2b2b2b] p-5 rounded-xl flex flex-col gap-2">
-              <div class="flex h-8 gap-2 items-center justify-between">
-                <h4 class="">{post.author.name}</h4>
-                <img
-                  src={post.author.image}
-                  alt={`${post.author.name} avatar`}
-                  class="rounded-full w-8 h-8"
-                />
-              </div>
-              <h4 class="text-xs">{post.date}</h4>
-              <h2 class="font-bold text-xl">{post.title}</h2>
-              <h3 class="text-sm">{post.description}</h3>
+            <a
+              class="w-full bg-[#2b2b2b] rounded-xl flex flex-col gap-2 p-5"
+              href={post.link}
+              target="_blank"
+            >
+              <p class="text-xs font-semibold">
+                <FormattedDate date={new Date(post.date as string)} />
+              </p>
+
               {post.cover ? (
                 <img
                   src={post.cover}
@@ -80,7 +78,21 @@ console.log("posts:", posts);
                   class="rounded-xl"
                 />
               ) : null}
-            </div>
+
+              <div class="flex flex-col gap-1">
+                <h2 class="font-bold text-xl">{post.title}</h2>
+                <h3 class="text-sm">{post.description}</h3>
+
+                <div class="flex h-8 gap-2 items-center justify-between">
+                  <h4 class="font-semibold">{post.author.name}</h4>
+                  <img
+                    src={post.author.image}
+                    alt={`${post.author.name} avatar`}
+                    class="rounded-full w-8 h-8"
+                  />
+                </div>
+              </div>
+            </a>
           ))
         }
       </div>
