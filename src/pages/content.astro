@@ -4,6 +4,7 @@ import FormattedDate from "../components/FormattedDate.astro";
 import Layout from "../layouts/Layout.astro";
 import { getDevs } from "../utils";
 import Parser from "rss-parser";
+import ogs from "open-graph-scraper";
 
 let parser = new Parser();
 const devs = getDevs();
@@ -26,19 +27,24 @@ const posts: Post[] = (
       if (dev.rss) {
         let feed = await parser.parseURL(dev.rss);
 
-        return feed.items.map((item) => {
-          return {
-            title: item.title,
-            description: item.content,
-            link: item.link,
-            cover: item.enclosure?.url,
-            date: item.pubDate,
-            author: {
-              name: dev.name,
-              image: dev.image,
-            },
-          };
-        });
+        return await Promise.all(
+          feed.items.map(async (item) => {
+            const imageUrl = item.enclosure
+              ? item.enclosure.url
+              : (await ogs({ url: item.link })).result.ogImage?.at(0)?.url;
+            return {
+              title: item.title,
+              description: item.content,
+              link: item.link,
+              cover: imageUrl,
+              date: item.pubDate,
+              author: {
+                name: dev.name,
+                image: dev.image,
+              },
+            };
+          })
+        );
       }
       return [];
     })
@@ -50,7 +56,6 @@ const posts: Post[] = (
       (new Date(b.date as string) as unknown as number) -
       (new Date(a.date as string) as unknown as number)
   );
-console.log("posts:", posts);
 ---
 
 <Layout title="MonkeyDevs">
