@@ -2,6 +2,7 @@ export function getDevs() {
   const developers: {
     name: string;
     image: string;
+    rss?: string;
   }[] = [
     {
       name: "Vinicius Ventura",
@@ -10,10 +11,12 @@ export function getDevs() {
     {
       name: "Guilherme Abe",
       image: "https://avatars.githubusercontent.com/u/39712525?v=4",
+      rss: "https://www.epicweb.dev/rss.xml",
     },
     {
       name: "Viktor Pereira",
       image: "https://avatars.githubusercontent.com/u/56888067?v=4",
+      rss: "https://www.viktormarinho.dev/rss.xml",
     },
     {
       name: "Igor Oliveira",

@@ -1,0 +1,89 @@
+---
+import Footer from "../components/Footer.astro";
+import Layout from "../layouts/Layout.astro";
+import { getDevs } from "../utils";
+import Parser from "rss-parser";
+
+let parser = new Parser();
+const devs = getDevs();
+
+type Post = {
+  title: string | undefined;
+  description: string | undefined;
+  link: string | undefined;
+  cover: string | undefined;
+  date: string | undefined;
+  author: {
+    name: string;
+    image: string;
+  };
+};
+
+const posts: Post[] = (
+  await Promise.all(
+    devs.map(async (dev) => {
+      if (dev.rss) {
+        let feed = await parser.parseURL(dev.rss);
+
+        return feed.items.map((item) => {
+          return {
+            title: item.title,
+            description: item.content,
+            link: item.link,
+            cover: item.enclosure?.url,
+            date: item.pubDate,
+            author: {
+              name: dev.name,
+              image: dev.image,
+            },
+          };
+        });
+      }
+      return [];
+    })
+  )
+)
+  .flat()
+  .sort(
+    (a, b) =>
+      (new Date(b.date as string) as unknown as number) -
+      (new Date(a.date as string) as unknown as number)
+  );
+console.log("posts:", posts);
+---
+
+<Layout title="MonkeyDevs">
+  <main class="items-center flex flex-col">
+    <div class="max-w-xl w-full">
+      <h1 class="self-start mt-12 font-semibold text-xl">
+        <span class="font-bold">Content</span> - Articles produced by MonkeyDevs
+      </h1>
+      <div class="mt-4 flex flex-col gap-2 max-w-xl">
+        {
+          posts.map((post) => (
+            <div class="w-full bg-[#2b2b2b] p-5 rounded-xl flex flex-col gap-2">
+              <div class="flex h-8 gap-2 items-center justify-between">
+                <h4 class="">{post.author.name}</h4>
+                <img
+                  src={post.author.image}
+                  alt={`${post.author.name} avatar`}
+                  class="rounded-full w-8 h-8"
+                />
+              </div>
+              <h4 class="text-xs">{post.date}</h4>
+              <h2 class="font-bold text-xl">{post.title}</h2>
+              <h3 class="text-sm">{post.description}</h3>
+              {post.cover ? (
+                <img
+                  src={post.cover}
+                  alt={`${post.title} cover image`}
+                  class="rounded-xl"
+                />
+              ) : null}
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </main>
+</Layout>

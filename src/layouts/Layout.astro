@@ -21,12 +21,14 @@ const { title } = Astro.props;
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
   </head>
-  <body class="flex bg-[#1C1C1C] text-white">
+  <body>
     <ViewTransitions />
-    <Sidebar />
-    <div class="flex flex-col">
-      <slot />
-      <Footer />
+    <div class="flex bg-[#1C1C1C] text-white h-screen overflow-y-hidden">
+      <Sidebar />
+      <div class="overflow-y-auto overflow-x-hidden w-screen">
+        <slot />
+        <Footer />
+      </div>
     </div>
   </body>
 </html>
