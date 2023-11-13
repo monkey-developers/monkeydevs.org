@@ -23,7 +23,7 @@ const kv = createClient({
   token: import.meta.env.KV_REST_API_TOKEN,
 });
 
-export const GET: APIRoute = async ({ params, request }) => {
+export const POST: APIRoute = async ({ params, request }) => {
   if (
     request.headers.get("Authorization") !==
     `Bearer ${import.meta.env.QSTASH_TOKEN}`
