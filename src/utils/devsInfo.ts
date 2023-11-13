@@ -47,8 +47,8 @@ export function getDevs() {
       image: "https://avatars.githubusercontent.com/u/98670493?v=4",
     },
     {
-      name: "Monkey",
-      image: "",
+      name: "Geovana Franco",
+      image: "https://avatars.githubusercontent.com/u/89093823?v=4",
     },
     {
       name: "Monkey",
