@@ -4,7 +4,7 @@ export const prerender = false;
 import FormattedDate from "../components/FormattedDate.astro";
 import Layout from "../layouts/Layout.astro";
 import { createClient } from "@vercel/kv";
-import type { Post } from "./api/cron/aggregate";
+import type { Post } from "./api/cron";
 
 const kv = createClient({
   url: import.meta.env.KV_REST_API_URL,
@@ -62,3 +62,4 @@ console.log(posts);
     </div>
   </main>
 </Layout>
+ ./api/aggregate

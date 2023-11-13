@@ -1,7 +1,8 @@
 import { createClient } from "@vercel/kv";
-import { getDevs } from "../../../utils";
+import { getDevs } from "../../utils";
 import Parser from "rss-parser";
 import ogs from "open-graph-scraper";
+import type { APIRoute } from "astro";
 
 export type Post = {
   title: string | undefined;
@@ -22,7 +23,18 @@ const kv = createClient({
   token: import.meta.env.KV_REST_API_TOKEN,
 });
 
-export async function GET() {
+export const GET: APIRoute = async ({ params, request }) => {
+  if (
+    request.headers.get("Authorization") !== `Bearer ${process.env.CRON_SECRET}`
+  ) {
+    return new Response(JSON.stringify({ message: "Unauthorized" }), {
+      status: 401,
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+  }
+
   let parser = new Parser();
   const devs = getDevs();
   const posts: Post[] = (
@@ -70,4 +82,4 @@ export async function GET() {
       "Content-Type": "application/json",
     },
   });
-}
+};
