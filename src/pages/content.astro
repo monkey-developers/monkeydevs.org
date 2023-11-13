@@ -1,61 +1,18 @@
 ---
-import Footer from "../components/Footer.astro";
+export const prerender = false;
+
 import FormattedDate from "../components/FormattedDate.astro";
 import Layout from "../layouts/Layout.astro";
-import { getDevs } from "../utils";
-import Parser from "rss-parser";
-import ogs from "open-graph-scraper";
+import { createClient } from "@vercel/kv";
+import type { Post } from "./api/cron/aggregate";
 
-let parser = new Parser();
-const devs = getDevs();
+const kv = createClient({
+  url: import.meta.env.KV_REST_API_URL,
+  token: import.meta.env.KV_REST_API_TOKEN,
+});
 
-type Post = {
-  title: string | undefined;
-  description: string | undefined;
-  link: string | undefined;
-  cover: string | undefined;
-  date: string | undefined;
-  author: {
-    name: string;
-    image: string;
-  };
-};
-
-const posts: Post[] = (
-  await Promise.all(
-    devs.map(async (dev) => {
-      if (dev.rss) {
-        let feed = await parser.parseURL(dev.rss);
-
-        return await Promise.all(
-          feed.items.map(async (item) => {
-            const imageUrl = item.enclosure
-              ? item.enclosure.url
-              : (await ogs({ url: item.link })).result.ogImage?.at(0)?.url;
-            return {
-              title: item.title,
-              description: item.content,
-              link: item.link,
-              cover: imageUrl,
-              date: item.pubDate,
-              author: {
-                name: dev.name,
-                image: dev.image,
-              },
-            };
-          })
-        );
-      }
-      return [];
-    })
-  )
-)
-  .flat()
-  .sort(
-    (a, b) =>
-      (new Date(b.date as string) as unknown as number) -
-      (new Date(a.date as string) as unknown as number)
-  );
+const posts: Post[] | null = await kv.get("posts");
+console.log(posts);
 ---
 
 <Layout title="MonkeyDevs">
@@ -66,39 +23,40 @@ const posts: Post[] = (
       </h1>
       <div class="mt-4 flex flex-col gap-3 max-w-xl">
         {
-          posts.map((post) => (
-            <a
-              class="w-full bg-[#2b2b2b] rounded-xl flex flex-col gap-2 p-5"
-              href={post.link}
-              target="_blank"
-            >
-              <p class="text-xs font-semibold">
-                <FormattedDate date={new Date(post.date as string)} />
-              </p>
+          posts &&
+            posts.map((post) => (
+              <a
+                class="w-full bg-[#2b2b2b] rounded-xl flex flex-col gap-2 p-5"
+                href={post.link}
+                target="_blank"
+              >
+                <p class="text-xs font-semibold">
+                  <FormattedDate date={new Date(post.date as string)} />
+                </p>
 
-              {post.cover ? (
-                <img
-                  src={post.cover}
-                  alt={`${post.title} cover image`}
-                  class="rounded-xl"
-                />
-              ) : null}
-
-              <div class="flex flex-col gap-1">
-                <h2 class="font-bold text-xl">{post.title}</h2>
-                <h3 class="text-sm">{post.description}</h3>
-
-                <div class="flex h-8 gap-2 items-center justify-between">
-                  <h4 class="font-semibold">{post.author.name}</h4>
+                {post.cover ? (
                   <img
-                    src={post.author.image}
-                    alt={`${post.author.name} avatar`}
-                    class="rounded-full w-8 h-8"
+                    src={post.cover}
+                    alt={`${post.title} cover image`}
+                    class="rounded-xl"
                   />
+                ) : null}
+
+                <div class="flex flex-col gap-1">
+                  <h2 class="font-bold text-xl">{post.title}</h2>
+                  <h3 class="text-sm">{post.description}</h3>
+
+                  <div class="flex h-8 gap-2 items-center justify-between">
+                    <h4 class="font-semibold">{post.author.name}</h4>
+                    <img
+                      src={post.author.image}
+                      alt={`${post.author.name} avatar`}
+                      class="rounded-full w-8 h-8"
+                    />
+                  </div>
                 </div>
-              </div>
-            </a>
-          ))
+              </a>
+            ))
         }
       </div>
     </div>

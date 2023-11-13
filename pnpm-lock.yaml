@@ -7,6 +7,7 @@ specifiers:
   '@astrojs/vercel': ^5.2.0
   '@babel/core': ^7.23.3
   '@fontsource/nunito': ^5.0.15
+  '@vercel/kv': ^1.0.0
   astro: ^3.5.0
   open-graph-scraper: ^6.3.2
   preact: ^10.6.5
@@ -22,6 +23,7 @@ dependencies:
   '@astrojs/vercel': 5.2.0_astro@3.5.0
   '@babel/core': 7.23.3
   '@fontsource/nunito': 5.0.15
+  '@vercel/kv': 1.0.0
   astro: 3.5.0_typescript@5.2.2
   open-graph-scraper: 6.3.2
   preact: 10.19.1
@@ -1093,10 +1095,23 @@ packages:
     resolution: {integrity: sha512-zuVdFrMJiuCDQUMCzQaD6KL28MjnqqN8XnAqiEq9PNm/hCPTSGfrXCOfwj1ow4LFb/tNymJPwsNbVePc1xFqrQ==}
     dev: false
 
+  /@upstash/redis/1.24.3:
+    resolution: {integrity: sha512-gw6d4IA1biB4eye5ESaXc0zOlVQI94aptsBvVcTghYWu1kRmOrJFoMFEDCa8p5uzluyYAOFCuY2GWLR6O4ZoIw==}
+    dependencies:
+      crypto-js: 4.2.0
+    dev: false
+
   /@vercel/analytics/1.1.1:
     resolution: {integrity: sha512-+NqgNmSabg3IFfxYhrWCfB/H+RCUOCR5ExRudNG2+pcRehq628DJB5e1u1xqwpLtn4pAYii4D98w7kofORAGQA==}
     dependencies:
       server-only: 0.0.1
+    dev: false
+
+  /@vercel/kv/1.0.0:
+    resolution: {integrity: sha512-StouXunmEqUfKE+1joSYfELWEEnI1MhTnzUdarHtv6H18RAm3cf5u5g9ElvA1DJNHcrMT6g5yVAhZcYRbk6lvg==}
+    engines: {node: '>=14.6'}
+    dependencies:
+      '@upstash/redis': 1.24.3
     dev: false
 
   /@vercel/nft/0.23.1:
@@ -1707,6 +1722,10 @@ packages:
       path-key: 3.1.1
       shebang-command: 2.0.0
       which: 2.0.2
+    dev: false
+
+  /crypto-js/4.2.0:
+    resolution: {integrity: sha512-KALDyEYgpY+Rlob/iriUtjV6d5Eq+Y191A5g4UqLAi8CyGP9N1+FdVbkc1SxKc2r4YAYqG8JzO2KGL+AizD70Q==}
     dev: false
 
   /css-select/5.1.0:

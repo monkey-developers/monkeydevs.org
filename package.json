@@ -16,6 +16,7 @@
     "@astrojs/vercel": "^5.2.0",
     "@babel/core": "^7.23.3",
     "@fontsource/nunito": "^5.0.15",
+    "@vercel/kv": "^1.0.0",
     "astro": "^3.5.0",
     "open-graph-scraper": "^6.3.2",
     "preact": "^10.6.5",
