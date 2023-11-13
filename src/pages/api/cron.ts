@@ -3,6 +3,7 @@ import { getDevs } from "../../utils";
 import Parser from "rss-parser";
 import ogs from "open-graph-scraper";
 import type { APIRoute } from "astro";
+import { z } from "zod";
 
 export type Post = {
   title: string | undefined;
@@ -24,10 +25,24 @@ const kv = createClient({
 });
 
 export const POST: APIRoute = async ({ params, request }) => {
-  if (
-    request.headers.get("Authorization") !==
-    `Bearer ${import.meta.env.QSTASH_TOKEN}`
-  ) {
+  const body = await request.json();
+
+  const result = z
+    .object({
+      secret: z.string().min(1),
+    })
+    .safeParse(body);
+
+  if (!result.success) {
+    return new Response(JSON.stringify({ message: "Unauthorized" }), {
+      status: 401,
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+  }
+
+  if (result.data.secret !== import.meta.env.CRON_SECRET) {
     return new Response(JSON.stringify({ message: "Unauthorized" }), {
       status: 401,
       headers: {
