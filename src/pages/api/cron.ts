@@ -24,16 +24,16 @@ const kv = createClient({
 });
 
 export const GET: APIRoute = async ({ params, request }) => {
-  if (
-    request.headers.get("Authorization") !== `Bearer ${process.env.CRON_SECRET}`
-  ) {
-    return new Response(JSON.stringify({ message: "Unauthorized" }), {
-      status: 401,
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-  }
+  // if (
+  //   request.headers.get("Authorization") !== `Bearer ${process.env.CRON_SECRET}`
+  // ) {
+  //   return new Response(JSON.stringify({ message: "Unauthorized" }), {
+  //     status: 401,
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //   });
+  // }
 
   let parser = new Parser();
   const devs = getDevs();
