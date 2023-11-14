@@ -17,3 +17,4 @@ export function shuffle(array: any[]) {
 }
 
 export { getDevs } from "./devsInfo";
+export { getProjects } from "./projectsInfo";

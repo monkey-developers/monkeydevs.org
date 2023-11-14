@@ -1,0 +1,118 @@
+---
+import { getProjects } from "../utils";
+const {currentPage} = Astro.props
+---
+
+<div class="w-3/4 border-[1rem] border-black bg-gray-900 rounded-2xl">
+    <div class="flex">
+  {
+    getProjects().map((p) => (
+        <div class={`rounded-t-lg  text-gray-300 stroke-gray-300 w-40 py-2 px-4 flex justify-between items-center ${p.title != currentPage? "bg-gray-900 text-gray-400" :"bg-gray-700"}`}>
+          <div class="flex gap-2 text-sm items-center">
+            <img src={p.icon} alt="" />
+
+            {p.title}
+          </div>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="icon icon-tabler icon-tabler-x stroke-gray-500"
+            width="14"
+            height="14"
+            viewBox="0 0 24 24"
+            stroke-width="2"
+            stroke="currentColor"
+            fill="none"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <path d="M18 6l-12 12" />
+            <path d="M6 6l12 12" />
+          </svg>
+        </div>
+        ))
+    }
+    </div>
+  {
+    getProjects().map((p) =>
+      p.title == currentPage ? (
+        <>
+          <div class="w-full bg-gray-700 py-2 px-4 flex items-center">
+            <div class="flex items-center gap-4 mr-4">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="icon icon-tabler icon-tabler-arrow-right rotate-180 stroke-gray-200"
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                stroke-width="2"
+                stroke="currentColor"
+                fill="none"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                <path d="M5 12l14 0" />
+                <path d="M13 18l6 -6" />
+                <path d="M13 6l6 6" />
+              </svg>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="icon icon-tabler icon-tabler-arrow-right stroke-gray-400"
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                stroke-width="2"
+                stroke="currentColor"
+                fill="none"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                <path d="M5 12l14 0" />
+                <path d="M13 18l6 -6" />
+                <path d="M13 6l6 6" />
+              </svg>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="icon icon-tabler icon-tabler-reload stroke-gray-200"
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                stroke-width="2"
+                stroke="currentColor"
+                fill="none"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                <path d="M19.933 13.041a8 8 0 1 1 -9.925 -8.788c3.899 -1 7.935 1.007 9.425 4.747" />
+                <path d="M20 4v5h-5" />
+              </svg>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="icon icon-tabler icon-tabler-home mb-[2px] stroke-gray-200"
+                width="19"
+                height="19"
+                viewBox="0 0 24 24"
+                stroke-width="2.2"
+                stroke="currentColor"
+                fill="none"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                <path d="M5 12l-2 0l9 -9l9 9l-2 0" />
+                <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+              </svg>
+            </div>
+            <div class="rounded-full bg-gray-600 text-sm text-gray-300 w-full h-8 px-4 flex items-center">
+              {p.url}
+            </div>
+          </div>
+          <img src={p.image} alt="" />
+        </>
+      ) : null
+    )
+  }
+</div>
