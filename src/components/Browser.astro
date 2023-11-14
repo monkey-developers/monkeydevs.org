@@ -7,7 +7,7 @@ const {currentPage} = Astro.props
     <div class="flex">
   {
     getProjects().map((p) => (
-        <div class={`rounded-t-lg  text-gray-300 stroke-gray-300 w-40 py-2 px-4 flex justify-between items-center ${p.title != currentPage? "bg-gray-900 text-gray-400" :"bg-gray-700"}`}>
+        <div class={`rounded-t-lg  text-gray-300 stroke-gray-300 w-40 py-2 px-4 flex justify-between items-center ${p.title != currentPage? "bg-gray-900 border-x border-gray-800 text-gray-400" :"bg-gray-700"}`}>
           <div class="flex gap-2 text-sm items-center">
             <img src={p.icon} alt="" />
 
