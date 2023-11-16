@@ -4,15 +4,22 @@ export const prerender = false;
 import FormattedDate from "../components/FormattedDate.astro";
 import Layout from "../layouts/Layout.astro";
 import { createClient } from "@vercel/kv";
-import type { Post } from "./api/cron";
+import { type Post, generateFeed } from "../utils/rss";
 
-const kv = createClient({
-  url: import.meta.env.KV_REST_API_URL,
-  token: import.meta.env.KV_REST_API_TOKEN,
-});
+let posts: Post[] | null;
 
-const posts: Post[] | null = await kv.get("posts");
-console.log(posts);
+if (import.meta.env.MODE === "development") {
+  console.log("development env: fetching posts from local server");
+  posts = await generateFeed();
+} else {
+  console.log("production env: fetching posts from @vercel/kv");
+  const kv = createClient({
+    url: import.meta.env.KV_REST_API_URL,
+    token: import.meta.env.KV_REST_API_TOKEN,
+  });
+
+  posts = await kv.get("posts");
+}
 ---
 
 <Layout title="MonkeyDevs">
