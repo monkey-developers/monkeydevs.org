@@ -11,7 +11,6 @@ export function getDevs() {
     {
       name: "Guilherme Abe",
       image: "https://avatars.githubusercontent.com/u/39712525?v=4",
-      rss: "https://www.epicweb.dev/rss.xml",
     },
     {
       name: "Viktor Pereira",
