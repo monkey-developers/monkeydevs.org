@@ -14,7 +14,7 @@ export function getDevs() {
       image: "https://avatars.githubusercontent.com/u/39712525?v=4",
     },
     {
-      name: "Viktor Pereira",
+      name: "Viktor Marinho",
       image: "https://avatars.githubusercontent.com/u/56888067?v=4",
       rss: "https://www.viktormarinho.dev/rss.xml",
     },
