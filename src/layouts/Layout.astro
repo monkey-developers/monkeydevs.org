@@ -26,9 +26,12 @@ const { title } = Astro.props;
     <div class="flex bg-[#1C1C1C] text-white h-screen overflow-y-hidden">
       <Sidebar />
       <div
-        class="overflow-y-auto overflow-x-hidden w-screen flex flex-col justify-between"
+        class="overflow-y-auto overflow-x-hidden w-screen flex flex-col justify-between relative"
       >
-        <slot />
+        <div class="absolute inset-0 bg-[url(/grid.svg)] bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))]"></div>
+        <div class="relative">
+          <slot />
+        </div>
         <Footer />
       </div>
     </div>
