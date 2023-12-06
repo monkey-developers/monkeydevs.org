@@ -7,6 +7,7 @@ export function getDevs() {
     {
       name: "Vinicius Ventura",
       image: "https://avatars.githubusercontent.com/u/58307012?v=4",
+      rss: "https://me.ventura.dev.br/rss.xml",
     },
     {
       name: "Guilherme Abe",
