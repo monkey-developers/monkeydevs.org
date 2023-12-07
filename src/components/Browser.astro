@@ -3,7 +3,7 @@ import { getProjects } from "../utils";
 const {currentPage} = Astro.props
 ---
 
-<div class="w-3/4 border-[1rem] border-black bg-gray-900 rounded-2xl">
+<div class="border-[1rem] border-black bg-gray-900 rounded-2xl">
     <div class="flex">
   {
     getProjects().map((p) => (

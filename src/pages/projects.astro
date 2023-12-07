@@ -1,11 +1,11 @@
 ---
 import Browser from "../components/Browser.astro";
+import { ProjectsPage } from "../components/ProjectsPage";
 import Layout from "../layouts/Layout.astro";
 ---
 
 <Layout title="Monkey Developers">
-  <section class="flex flex-col items-center">
-    <div class="h-[700px]"></div>
+  <ProjectsPage client:only="react">
     <Browser currentPage="Notes" />
-  </section>
+  </ProjectsPage>
 </Layout>

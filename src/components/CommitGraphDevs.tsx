@@ -1,5 +1,5 @@
+import { useState, useMemo, useEffect } from "react";
 import { getDevs, shuffle, sleep } from "../utils";
-import { useEffect, useMemo, useState } from "preact/hooks";
 
 function commitArray() {
   const greater = Array(16).fill("greater");
@@ -34,26 +34,35 @@ export default function CommitGraphDevs() {
   }, []);
 
   return (
-    <div class="relative mt-64 w-full flex justify-center animate-fadeIn">
-      <div class="flex flex-wrap gap-1 w-[540px] mt-[-136px]">
-        {commits.map((commit: any) =>
+    <div className="relative mt-64 w-full flex justify-center animate-fadeIn">
+      <div className="flex flex-wrap gap-1 w-[540px] mt-[-136px]">
+        {commits.map((commit: any, index: any) =>
           commit == "greater" ? (
-            <div class="bg-[rgb(38,166,65)] rounded-lg h-16 w-16" />
+            <div
+              key={index}
+              className="bg-[rgb(38,166,65)] rounded-lg h-16 w-16"
+            />
           ) : commit == "great" ? (
-            <div class="bg-[rgb(0,109,50)] rounded-lg h-16 w-16" />
+            <div
+              key={index}
+              className="bg-[rgb(0,109,50)] rounded-lg h-16 w-16"
+            />
           ) : commit == "good" ? (
-            <div class="bg-[rgb(14,68,41)] rounded-lg h-16 w-16" />
+            <div
+              key={index}
+              className="bg-[rgb(14,68,41)] rounded-lg h-16 w-16"
+            />
           ) : (
-            <div class="bg-[#2b2b2b] rounded-lg h-16 w-16" />
+            <div key={index} className="bg-[#2b2b2b] rounded-lg h-16 w-16" />
           )
         )}
       </div>
-      <div class="grid grid-cols-4 grid-rows-4 gap-1 absolute top-0">
-        {devs.map((dev) =>
+      <div className="grid grid-cols-4 grid-rows-4 gap-1 absolute top-0">
+        {devs.map((dev, index) =>
           dev.name == "Monkey" ? (
-            <div class="bg-[#2b2b2b] rounded-lg h-16 w-16" />
+            <div key={index} className="bg-[#2b2b2b] rounded-lg h-16 w-16" />
           ) : (
-            <DevCard name={dev.name} image={dev.image} />
+            <DevCard key={dev.name} name={dev.name} image={dev.image} />
           )
         )}
       </div>
@@ -65,11 +74,10 @@ function DevCard({ image, name }: PropsCardDev) {
   return (
     <a
       href=""
-      class="h-16 w-16 flex items-center justify-center bg-cover rounded-lg hover:scale-150 transition group"
+      className="h-16 w-16 flex items-center justify-center bg-cover rounded-lg hover:scale-150 transition group"
       style={{ backgroundImage: `url(${image})` }}
-      alt={name}
     >
-      <dev class="bg-black opacity-0 group-hover:opacity-40 h-full w-full rounded-lg"></dev>
+      <div className="bg-black opacity-0 group-hover:opacity-40 h-full w-full rounded-lg"></div>
     </a>
   );
 }

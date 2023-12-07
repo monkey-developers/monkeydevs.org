@@ -11,15 +11,17 @@
   },
   "dependencies": {
     "@astrojs/check": "^0.3.1",
-    "@astrojs/preact": "^3.0.1",
+    "@astrojs/react": "^3.0.7",
     "@astrojs/tailwind": "^5.0.2",
     "@astrojs/vercel": "^5.2.0",
     "@babel/core": "^7.23.3",
     "@fontsource/nunito": "^5.0.15",
     "@vercel/kv": "^1.0.0",
     "astro": "^3.5.0",
+    "framer-motion": "^10.16.15",
     "open-graph-scraper": "^6.3.2",
-    "preact": "^10.6.5",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "rss-parser": "^3.13.0",
     "tailwindcss": "^3.0.24",
     "typescript": "^5.2.2",
@@ -28,5 +30,8 @@
   },
   "engines": {
     "node": ">= 18.0.0 < 19.0.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.42"
   }
 }
