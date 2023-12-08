@@ -12,7 +12,7 @@ export function getDevs() {
     {
       name: "Guilherme Abe",
       image: "https://avatars.githubusercontent.com/u/39712525?v=4",
-      rss: "https://new.hidek.xyz/rss.xml",
+      rss: "https://hidek.xyz/rss.xml",
     },
     {
       name: "Viktor Marinho",
